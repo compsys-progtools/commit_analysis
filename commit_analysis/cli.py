@@ -1,7 +1,8 @@
 import click
 import os
+import pkg_resources
 from .analysis import generate_commit_history, parse_commit_history
-from .myst import generate_myst_page
+from .myst_generator import generate_myst_page
 
 @click.command()
 def main():
@@ -14,7 +15,7 @@ def main():
     commit_history_txt = os.path.join(output_dir, 'commit_history.txt')
     commit_data_csv = os.path.join(output_dir, 'commit_data.csv')
     report_md = os.path.join(output_dir, 'report.md')
-    notebook_ipynb = os.path.join(output_dir, 'notebook.ipynb')
+    notebook_ipynb = pkg_resources.resource_filename('commit_analysis', 'notebook.ipynb')
 
     generate_commit_history(commit_history_txt)
     click.echo('Generated commit_history.txt')
@@ -26,6 +27,6 @@ def main():
     click.echo(f"Generated MyST page at {report_md}")
     click.echo("Your MyST page is running.")
     click.echo("Press Ctrl+C to stop the server.")
-    
+
 if __name__ == '__main__':
     main()
