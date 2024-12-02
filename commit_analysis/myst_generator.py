@@ -10,6 +10,5 @@ def convert_notebook_to_markdown(notebook_path, markdown_path):
     subprocess.run(command, check=True)
 
 def start_myst_server(directory):
-    os.chdir(directory)
     command = ['myst', 'start']
-    subprocess.Popen(command)
+    subprocess.run(command, cwd=directory)
