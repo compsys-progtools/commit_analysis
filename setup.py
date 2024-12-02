@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 
 setup (
     name = 'commit_analysis',
-    version='0.1.0',
+    version = '0.1.0',
     packages = find_packages(),
     install_requires = [
-        'Click', 
+        'Click',
         'pandas',
         'matplotlib',
         'myst-parser',
@@ -18,4 +18,7 @@ setup (
         ],
     },
     include_package_data = True,
+    package_data = {
+        'commit_analysis': ['notebook.ipynb'],
+    },
 )
