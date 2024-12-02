@@ -1,8 +1,7 @@
 import click
 import os
 from .analysis import generate_commit_history, parse_commit_history
-from .visualization import generate_plots
-from .report import generate_report, convert_md_to_ipynb
+from .myst import generate_myst_page
 
 @click.command()
 def main():
@@ -10,10 +9,12 @@ def main():
         click.echo('Error: Current directory is not a git repository.')
         return
 
-    commit_history_txt = 'commit_history.txt'
-    commit_data_csv = 'commit_data.csv'
-    report_md = 'commit_report.md'
-    report_ipynb = 'commit_report.ipynb'
+    output_dir = os.getcwd()
+
+    commit_history_txt = os.path.join(output_dir, 'commit_history.txt')
+    commit_data_csv = os.path.join(output_dir, 'commit_data.csv')
+    report_md = os.path.join(output_dir, 'report.md')
+    notebook_ipynb = os.path.join(output_dir, 'notebook.ipynb')
 
     generate_commit_history(commit_history_txt)
     click.echo('Generated commit_history.txt')
@@ -21,16 +22,10 @@ def main():
     parse_commit_history(commit_history_txt, commit_data_csv)
     click.echo('Generated commit_data.csv')
 
-    generate_plots(commit_data_csv)
-    click.echo('Generated plot images.')
-
-    generate_report(report_md)
-    click.echo('Generated commit_report.md')
-
-    convert_md_to_ipynb(report_md, report_ipynb)
-    click.echo('Generated commit_report.ipynb')
-
-    click.echo('Analysis complete.')
-
+    generate_myst_page(notebook_ipynb, report_md, output_dir)
+    click.echo(f"Generated MyST page at {report_md}")
+    click.echo("Your MyST page is running.")
+    click.echo("Press Ctrl+C to stop the server.")
+    
 if __name__ == '__main__':
     main()
