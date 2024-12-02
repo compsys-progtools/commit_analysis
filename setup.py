@@ -8,7 +8,8 @@ setup (
         'Click', 
         'pandas',
         'matplotlib',
-        'myst-parser', 
+        'myst-parser',
+        'jupytext',
     ],
     entry_points = {
         'console_scripts': [
