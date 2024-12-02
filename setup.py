@@ -9,6 +9,7 @@ setup (
         'pandas',
         'matplotlib',
         'myst-parser',
+        'myst-cli',
         'jupytext',
     ],
     entry_points = {
