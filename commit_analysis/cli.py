@@ -12,7 +12,7 @@ def main():
     report_md = os.path.join(current_dir, 'report.md')
 
     generate_commit_history(commit_history_txt)
-    print("Generated commit_history.txt)
+    print("Generated commit_history.txt")
     parse_commit_history(commit_history_txt, commit_data_csv)
     print("Generated commit_data.csv")
 
