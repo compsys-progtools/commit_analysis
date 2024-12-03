@@ -32,7 +32,8 @@ def parse_commit_history(input_file, output_file):
 
     df = pd.DataFrame(ch_data, columns = ['commit_hash', 'author_name', 'commit_date', 'file_name'])
 
-    df['commit_date'] = pd.to_datetime(df['commit_date'], errors = 'coerce')
+    df['commit_date'] = pd.to_datetime(df['commit_date'], errors = 'coerce', utc = True)
+    df = df.dropna(subset = ['commit_date'])
     df['commit_date'] = df['commit_date'].dt.tz_convert('US/Eastern')
 
     df.to_csv(output_file, index = False)
