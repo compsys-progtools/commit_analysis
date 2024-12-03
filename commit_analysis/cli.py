@@ -1,6 +1,6 @@
 import click
 import os
-import pkg_resources
+import importlib.resources as resources
 from .analysis import generate_commit_history, parse_commit_history
 from .myst_generator import generate_myst_page
 
@@ -15,7 +15,14 @@ def main():
     commit_history_txt = os.path.join(output_dir, 'commit_history.txt')
     commit_data_csv = os.path.join(output_dir, 'commit_data.csv')
     report_md = os.path.join(output_dir, 'report.md')
-    notebook_ipynb = pkg_resources.resource_filename('commit_analysis', 'notebook.ipynb')
+
+    try:
+        with resources.path('commit_analysis', 'notebook.ipynb') as notebook_path:
+            notebook_ipynb = str(notebook_path)
+            click.echo(f"Using notebook at {notebook_ipynb}")
+    except Exception as e:
+        click.echo(f"Error locating notebook.ipynb: {e}")
+        return
 
     generate_commit_history(commit_history_txt)
     click.echo('Generated commit_history.txt')
