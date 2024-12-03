@@ -9,10 +9,10 @@ setup (
         'pandas',
         'matplotlib',
         'myst-parser',
-        'myst-cli',
         'jupytext',
+        'jupyter-book',  
     ],
-    entry_points = {
+    entry_points={
         'console_scripts': [
             'commit_analysis = commit_analysis.cli:main',
         ],
