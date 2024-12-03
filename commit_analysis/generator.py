@@ -1,7 +1,7 @@
 import subprocess
 import os
 
-def generate_myst_page(notebook_ipynb, report_md, output_dir):
+def generate_page(notebook_ipynb, report_md, output_dir):
     convert_notebook_to_markdown(notebook_ipynb, report_md)
     build_jupyter_book(output_dir)
 
