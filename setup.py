@@ -12,7 +12,7 @@ setup (
         'myst-cli',
         'jupytext',
     ],
-    entry_points={
+    entry_points = {
         'console_scripts': [
             'commit_analysis = commit_analysis.cli:main',
         ],
