@@ -29,6 +29,7 @@ def build_jupyter_book(directory):
           - myst.header
           - myst.xref_missing
           - etoc.tableofcontents
+          - toctree.missing
     """)
     
     with open(config_path, 'w') as f:
