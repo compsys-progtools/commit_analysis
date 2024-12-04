@@ -18,5 +18,4 @@ def main():
 
     generate_page(notebook_ipynb, report_md, current_dir)
     print("Generated report.md")
-    print(f"Generated site at {current_dir}/_build/html/index.html")
-    print("You can open this file in your browser to view the report.")
+    print("Generate page to view commit analysis")
