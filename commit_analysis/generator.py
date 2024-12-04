@@ -37,7 +37,7 @@ def build_jupyter_book(directory):
     """)
     with open(config_path, 'w') as f:
         f.write(config_content)
-        f.flush()  
+        f.flush()
 
     toc_path = os.path.join(directory, '_toc.yml')
     toc_content = textwrap.dedent("""
@@ -46,16 +46,20 @@ def build_jupyter_book(directory):
     """)
     with open(toc_path, 'w') as f:
         f.write(toc_content)
-        f.flush()  
+        f.flush()
 
     print(f"Config file written to: {config_path}")
     print(f"TOC file written to: {toc_path}")
 
-    command = ['jupyter-book', 'build', directory, '--config', config_path, '--quiet']
+    command = [
+        'jupyter-book', 'build', directory,
+        '--config', config_path,
+        '--quiet', '--keep-going'
+    ]
     result = subprocess.run(command, capture_output=True, text=True, cwd=directory)
-    
+
     print(result.stdout)
     print(result.stderr)
-    
+
     if result.returncode != 0:
         raise RuntimeError(f"Jupyter Book build failed with return code {result.returncode}")
