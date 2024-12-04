@@ -15,11 +15,7 @@ def convert_notebook_to_markdown(notebook_path, markdown_path):
         '-o',
         markdown_path,
     ]
-    result = subprocess.run(command, capture_output=True, text=True)
-    print(result.stdout)
-    print(result.stderr)
-    if result.returncode != 0:
-        raise RuntimeError(f"Failed to convert notebook to markdown with return code {result.returncode}")
+    subprocess.run(command, check = True)
 
 def build_jupyter_book(directory):
     config_path = os.path.join(directory, '_config.yml')
@@ -33,33 +29,19 @@ def build_jupyter_book(directory):
           - myst.header
           - myst.xref_missing
           - etoc.tableofcontents
-          - toctree.missing
     """)
+    
     with open(config_path, 'w') as f:
         f.write(config_content)
-        f.flush()
 
     toc_path = os.path.join(directory, '_toc.yml')
     toc_content = textwrap.dedent("""
     format: jb-book
     root: report
     """)
+    
     with open(toc_path, 'w') as f:
         f.write(toc_content)
-        f.flush()
 
-    print(f"Config file written to: {config_path}")
-    print(f"TOC file written to: {toc_path}")
-
-    command = [
-        'jupyter-book', 'build', directory,
-        '--config', config_path,
-        '--quiet', '--keep-going'
-    ]
-    result = subprocess.run(command, capture_output=True, text=True, cwd=directory)
-
-    print(result.stdout)
-    print(result.stderr)
-
-    if result.returncode != 0:
-        raise RuntimeError(f"Jupyter Book build failed with return code {result.returncode}")
+    command = ['jupyter-book', 'build', directory, '--quiet']
+    subprocess.run(command, check = True)
