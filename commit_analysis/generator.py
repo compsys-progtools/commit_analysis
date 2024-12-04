@@ -10,7 +10,7 @@ def convert_notebook_to_markdown(notebook_path, markdown_path):
     command = [
         'jupytext',
         '--to',
-        'markdown',
+        'myst',
         notebook_path,
         '-o',
         markdown_path,
