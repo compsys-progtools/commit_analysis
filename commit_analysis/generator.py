@@ -44,5 +44,5 @@ def build_jupyter_book(directory):
     with open(toc_path, 'w') as f:
         f.write(toc_content)
 
-    command = ['jupyter-book', 'build', directory, '--quiet']
+    command = ['jupyter-book', 'build', directory, '--config', config_path, '--quiet']
     subprocess.run(command, check = True)
