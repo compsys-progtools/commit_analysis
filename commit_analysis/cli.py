@@ -6,7 +6,7 @@ from .analysis import generate_commit_history, parse_commit_history
 from .generator import generate_page
 
 if sys.platform == "win32":
-    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())
 
 @click.command()
 def main():
@@ -23,4 +23,4 @@ def main():
 
     generate_page(notebook_ipynb, report_md, current_dir)
     print("Generated report.md")
-    print("Generate page to view commit analysis")
+    print("Generated page to view commit analysis")
