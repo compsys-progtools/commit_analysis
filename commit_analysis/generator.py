@@ -18,13 +18,16 @@ def convert_notebook_to_markdown(notebook_path, markdown_path):
 
 def build_jupyter_book(directory):
     config_path = os.path.join(directory, '_config.yml')
+    config_content = """
+        title: Commit Analysis Report
+        execute:
+        execute_notebooks: force
+    """
     
-    if not os.path.exists(config_path):
-        with open(config_path, 'w') as f:
-            f.write("title: Commit Analysis Report\n")
+    with open(config_path, 'w') as f:
+        f.write(config_content)
 
     toc_path = os.path.join(directory, '_toc.yml')
-    
     with open(toc_path, 'w') as f:
         f.write("format: jb-book\nroot: report\n")
 
