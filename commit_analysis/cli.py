@@ -1,7 +1,12 @@
+import asyncio
+import sys
 import click
 import os
 from .analysis import generate_commit_history, parse_commit_history
 from .generator import generate_page
+
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 @click.command()
 def main():
