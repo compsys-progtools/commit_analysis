@@ -1,5 +1,7 @@
 from setuptools import setup, find_packages
 
+# Setup file including name, version, packages, install requirements, entry points, and package data.
+
 setup (
     name = 'commit_analysis',
     version = '0.1.0',
