@@ -2,9 +2,13 @@ import subprocess
 import os
 import textwrap
 
+# Function to call the other 2 functions in the file
+
 def generate_page(notebook_ipynb, report_md, output_dir):
     convert_notebook_to_markdown(notebook_ipynb, report_md)
     build_jupyter_book(output_dir)
+
+# Function that converts my Colab notebook code into MyST markdown format so that it can be built into a static page via JupyterBook using a subprocess bash command with JupyText
 
 def convert_notebook_to_markdown(notebook_path, markdown_path):
     command = [
@@ -16,6 +20,8 @@ def convert_notebook_to_markdown(notebook_path, markdown_path):
         markdown_path,
     ]
     subprocess.run(command, check = True)
+
+# Function that builds the JupyterBook page by generating the _config.yml and _toc.yml files and runs a subprocess bash command
 
 def build_jupyter_book(directory):
     config_path = os.path.join(directory, '_config.yml')
