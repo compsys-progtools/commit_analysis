@@ -1,6 +1,8 @@
 import subprocess
 import pandas as pd
 
+# Function to write to the commit_history.txt using a subprocess bash command
+
 def generate_commit_history(output_file):
     command = [
         'git', 'log',
@@ -9,6 +11,8 @@ def generate_commit_history(output_file):
     ]
     with open(output_file, 'w') as f:
         subprocess.run(command, stdout = f, text = True)
+
+# Function to write to the commit_data.csv file by splitting commit_history.txt into chunks and parsing it to put it into correct DataFrame format
 
 def parse_commit_history(input_file, output_file):
     with open(input_file, 'r') as chtxt:
