@@ -3,6 +3,8 @@ import os
 from .analysis import generate_commit_history, parse_commit_history
 from .generator import generate_page
 
+# Function to get the user's current working directory and join all of the files to generate with said directory as well as call every other function from other files and display output
+
 @click.command()
 def main():
     current_dir = os.getcwd()
